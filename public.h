@@ -38,5 +38,4 @@ int Create_Admin();
 int Create_Borrower();
 
 #endif // PUBLIC
-//wait, what?
 
