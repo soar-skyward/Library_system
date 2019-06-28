@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1561001116 source:d:\workshop\program\c\librarysystem\public.c
+	<stdlib.h>
+	"public.h"
+
+1561000342 d:\workshop\program\c\librarysystem\public.h
+
+1561001074 source:d:\workshop\program\c\librarysystem\main.c
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"admin.h"
+	"borrower.h"
+	"public.h"
+
+1560997616 d:\workshop\program\c\librarysystem\admin.h
+
+1560997616 d:\workshop\program\c\librarysystem\borrower.h
+
+1561000678 source:d:\workshop\program\c\librarysystem\admin.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"public.h"
+	"admin.h"
+
+1561000744 source:d:\workshop\program\c\librarysystem\borrower.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"public.h"
+	"borrower.h"
+
+1561731972 source:e:\workshop\program\c\librarysystem\borrower.c
+	"borrower.h"
+
+1561610361 e:\workshop\program\c\librarysystem\public.h
+	<stdlib.h>
+	<stdio.h>
+	<malloc.h>
+	<io.h>
+	"admin.h"
+
+1561731892 e:\workshop\program\c\librarysystem\admin.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<malloc.h>
+	<io.h>
+	"public.h"
+
+1561731952 e:\workshop\program\c\librarysystem\borrower.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<malloc.h>
+	<io.h>
+	"public.h"
+
+1561731892 source:e:\workshop\program\c\librarysystem\admin.c
+	"admin.h"
+
+1561731892 source:e:\workshop\program\c\librarysystem\main.c
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"admin.h"
+	"borrower.h"
+	"public.h"
+
+1561731901 source:e:\workshop\program\c\librarysystem\public.c
+	"public.h"
+
