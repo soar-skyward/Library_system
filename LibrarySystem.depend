@@ -71,3 +71,43 @@
 1561731901 source:e:\workshop\program\c\librarysystem\public.c
 	"public.h"
 
+1561774405 source:e:\workshop\github\libsystem\borrower.c
+	"borrower.h"
+
+1561774405 e:\workshop\github\libsystem\borrower.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<malloc.h>
+	<io.h>
+	"public.h"
+
+1561775117 e:\workshop\github\libsystem\public.h
+	<stdlib.h>
+	<stdio.h>
+	<malloc.h>
+	<io.h>
+	"admin.h"
+
+1561775454 e:\workshop\github\libsystem\admin.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<malloc.h>
+	<io.h>
+	"public.h"
+
+1561775454 source:e:\workshop\github\libsystem\main.c
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"admin.h"
+	"borrower.h"
+	"public.h"
+
+1561775454 source:e:\workshop\github\libsystem\admin.c
+	"admin.h"
+
+1561775060 source:e:\workshop\github\libsystem\public.c
+	"public.h"
+

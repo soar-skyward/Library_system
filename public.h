@@ -34,7 +34,6 @@ struct book_log
 };
 //函数功能见.c文件相应注释
 void cleanScr(int times);
-int Create_Admin();
 int Create_Borrower();
 
 #endif // PUBLIC

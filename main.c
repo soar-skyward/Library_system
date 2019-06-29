@@ -7,30 +7,6 @@
 /*
 
 */
-
-void Borrower_menu()
-{
-    char *p_name;
-    int acc,swi;
-    struct account_Admin login_a=login_Admin();
-    p_name=login_a.name;
-    acc=login_a.account;
-    if(p_name[0]!='\0')
-    {
-        printf("欢迎您，%s，请选择操作：\n",p_name);
-        printf("1.借阅图书\n2.归还图书\n3.借阅记录查询\n4.续借图书\n");
-        scanf("%d",&swi);
-        cleanScr(6);
-        switch(swi)
-        {
-            case(1):break;
-            case(2):break;
-            case(3):break;
-            case(4):break;
-        }
-    }
-}
-
 int CreateNew()
 {//创建新用户或管理员
     int new_type,value;
@@ -66,13 +42,13 @@ int main()
         switch(swi)//打开相应功能
         {
             case(1):
-                re=login_Borrower();
+                login_Borrower();
                 break;
             case(2):
-                re=login_Admin();
-                 break;
+                login_Admin();
+                break;
             case(3):
-                re=CreateNew();
+                CreateNew();
                 break;
             case(4):
                 printf("图书馆管理系统已退出\n");
@@ -80,7 +56,7 @@ int main()
             default: printf("输入错误！请重新选择\n\n");
         }
     }
-    printf("祝您有愉快的一天！\n")
+    printf("祝您有愉快的一天！\n");
     system("pause");
     return 0;
 }

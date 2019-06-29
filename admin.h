@@ -16,8 +16,9 @@ struct account_Admin
     //¥Ê¥¢∏Ò Ω£∫acc:1234567890;name:jack;password:passpass12345678;
 };
 
-struct account_Admin login_Admin();
+int login_Admin();
 
+int Create_Admin();
 void add_book();
 void import_book();
 void change_book();
