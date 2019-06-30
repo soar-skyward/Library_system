@@ -1,7 +1,8 @@
 #include "admin.h"
 
 int login_Admin()
-{
+{//管理员登录，登陆完成后跳至管理员菜单
+    FILE *account_file;
 
 }
 
@@ -9,9 +10,9 @@ int Create_Admin()
 {//创建管理员账号
     FILE *ac_data;
     struct account_Admin new_acc;
-    char pass_check[17],cache[16];
+    char pass_check[17],cache[16],account_cache[310];
     int is_exist=0,acc_check,s;
-    ac_data=fopen("AdminAccount.ac","a+");
+    ac_data=fopen("AdminAccount.txt","a+");
     if(access("AdminAccount.ac",0))//如果账户文件不存在，在创建后写入默认账号
         fputs("acc:1000000000;name:admin;password:admin;",ac_data);
     printf("请输入10位学号：");
@@ -24,7 +25,7 @@ int Create_Admin()
     gets(pass_check);
     while(!strcmp(new_acc.password,pass_check))
     {//两次密码不一致时重复输入
-        printf("两次密码输入不一致，请重新输入");
+        printf("两次密码输入不一致，请重新输入\n");
         printf("请输入6到16位密码：");
         gets(new_acc.password);
         printf("请再次输入密码：");
@@ -39,9 +40,9 @@ int Create_Admin()
             is_exist=1;
             break;
         }
-    }while(feof(ac_data)==0);
+    }while(!feof(ac_data));
     if(is_exist!=0)
-    {
+    {//存在账号时进行引导，选择操作
         printf("账号%d已经存在，请选择操作：\n1.使用现有账号登录\n2.重新注册\n3.退出\n",acc_check);
         scanf("%d",&s);
         switch(s)
@@ -52,8 +53,9 @@ int Create_Admin()
         }
     }
     else
-    {
+    {//将刚注册的账号信息写入账户文件中，并将用户转到登录
         printf("注册成功！正在转到登录界面。。。");
+        fprintf(ac_data,"acc:%d;name:%s;password:%s;\n",new_acc.account,new_acc.name,new_acc.password);
         login_Admin();
     }
 }
@@ -80,8 +82,9 @@ void Admin_menu(char *name)
 }
 
 void add_book()
-{
-
+{//向文件中添加单本图书的记录
+    FILE *book_file;
+    book_file=fopen("booklist.txt","a+")
 }
 
 void import_book()

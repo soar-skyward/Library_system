@@ -5,6 +5,11 @@ int login_Borrower()
 
 }
 
+int Create_Borrower()
+{
+
+}
+
 void Borrower_menu()
 {//µÇÂ¼ºóµÄ²Ëµ¥
     /*

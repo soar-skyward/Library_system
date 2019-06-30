@@ -6,10 +6,10 @@
 #include <malloc.h>
 #include <io.h>
 #include "admin.h"
+#include "borrower.h"
 
 /*
 这是用于定义一些所有模块都可能用到的变量、结构以及函数的头文件
-同时兼作更新日志
 */
 
 struct DATE
@@ -34,7 +34,7 @@ struct book_log
 };
 //函数功能见.c文件相应注释
 void cleanScr(int times);
-int Create_Borrower();
+int change_line(FILE *file,char *origin,char *modified);
 
 #endif // PUBLIC
 
