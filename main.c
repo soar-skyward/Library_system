@@ -31,7 +31,7 @@ int CreateNew()
 int main()
 {
     int swi,re;
-    while(swi!=4)
+    while(0)//(swi!=4)
     {
         swi=0;//初始化选项并开始选择
         printf("欢迎使用图书馆管理系统\n");

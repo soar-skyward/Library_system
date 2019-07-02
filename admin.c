@@ -70,13 +70,20 @@ void Admin_menu(char *name)
         scanf("%d",&swi);
         switch(swi)
         {
-            case(1):break;
-            case(2):break;
-            case(3):break;
-            case(4):break;
-            case(5):break;
-            case(6):break;
-            case(7):break;
+            case(1):
+                break;
+            case(2):
+                break;
+            case(3):
+                break;
+            case(4):
+                break;
+            case(5):
+                break;
+            case(6):
+                break;
+            case(7):
+                break;
         }
     }
 }
@@ -84,7 +91,7 @@ void Admin_menu(char *name)
 void add_book()
 {//向文件中添加单本图书的记录
     FILE *book_file;
-    book_file=fopen("booklist.txt","a+")
+    book_file=fopen("booklist.txt","a+");
 }
 
 void import_book()

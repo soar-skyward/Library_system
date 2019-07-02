@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <malloc.h>
+#include <time.h>
 #include <io.h>
 #include "admin.h"
 #include "borrower.h"
@@ -34,7 +35,8 @@ struct book_log
 };
 //函数功能见.c文件相应注释
 void cleanScr(int times);
-int change_line(FILE *file,char *origin,char *modified);
+int change_line(char *filename,char *origin,char *modified,int lenth);
+int delete_line(char *filename,char *target,int lenth);
 
 #endif // PUBLIC
 

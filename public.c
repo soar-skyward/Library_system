@@ -8,48 +8,118 @@ void cleanScr(int times)
         system("cls");
 }
 
-int change_line(char *filename,char *origin,char *modified,int max_lenth)
+int change_line(char *filename,char *origin,char *modified,int lenth)
 {
-    //改变文件中某一行的数据，输入文件名、想要修改的某一行和修改后的字符串、文件中字符串最大长度
-    //在使用前需关闭文件，执行完再重新打开
     /*
-        已知缺陷：当文件中有多行相同的数据时无法作用(只修改第一次出现的，看情况改进)
-                  当某行数据的前lenth个字符正好是*origin包含内容时会误报
+    改变文件中某一行的数据，输入文件名、想要修改的某一行和修改后的字符串、文件中字符串最大长度
+    在使用前需关闭文件，执行完再重新打开
+    已知缺陷：  当文件中有多行相同的数据时无法作用(只修改第一次出现的)
     */
     FILE *file,*new_file;
-    char *locate;
-    int status=0;
+    char *locate,*ori,*mod;
+    int status=0,len_o=strlen(origin),len_m=strlen(modified);
+    ori=(char*)malloc(sizeof(char)*len_o);//申请存储原始字符串的空间
+    mod=(char*)malloc(sizeof(char)*len_m);//申请修改后字符串的空间
+    locate=(char*)malloc(sizeof(char)*lenth);//申请用于搜素的空间
+    strcpy(ori,origin);
+    strcpy(mod,modified);
+    strcat(ori,"\n");
+    strcat(mod,"\n");
     file=fopen(filename,"a+");
     new_file=fopen("temp.txt","a+");
-    locate=(char*)malloc(sizeof(char)*(max_lenth+1));//申请用于搜素的空间
-    for(int i=0;i<=max_lenth;i++)
-    {
-        locate[i]='\0'//初始化空间，防止出问题s
-    }
     rewind(file);
     while(!feof(file))
-    {
-        fgets(locate,max_lenth,file);
-        if(!strcmp(locate,origin))
-        {
+    {//在搜索到目标行之前将数据复制到新文件中
+        fgets(locate,lenth,file);
+        if(!strcmp(locate,ori))
+        {//检测到目标行，跳出
             status=1;
             break;
         }
         else
-            fputs(locate,file);
+            fputs(locate,new_file);
     }
     if(status)
     {
-        fputs(modified,file);
-        while(!eof)
-        {
-            fgets(locate,max_lenth,file);
-            fputs(locate,file);
+        fputs(mod,new_file);
+        while(!feof(file))
+        {//将目标行之后的数据复制到新文件当中
+            fgets(locate,lenth,file);
+            fputs(locate,new_file);
+        }
+        fclose(file);
+        fclose(new_file);
+        rename(filename,"old");
+        rename("temp.txt",filename);
+        remove("old");
+        free(locate);//释放内存
+        free(ori);
+        free(mod);
+        return 0;
     }
     else
-    {
-        free(locate);
+    {//没有找到时返回错误代码-1
+        free(locate);//释放内存
+        free(ori);
+        free(mod);
+        fclose(file);
+        fclose(new_file);
+        remove("temp.txt");
         return -1;
     }
-    free(locate);
+}
+
+int delete_line(char *filename,char *target,int lenth)
+{
+    /*
+    改变文件中某一行的数据，输入文件名、想要修改的某一行和修改后的字符串、文件中字符串最大长度
+    在使用前需关闭文件，执行完再重新打开
+    已知缺陷：  当文件中有多行相同的数据时无法作用(只修改第一次出现的)
+    */
+    FILE *file,*new_file;
+    char *locate,*del;
+    int status=0;
+    locate=(char*)malloc(sizeof(char)*lenth);//申请用于搜素的空间
+    del=(char*)malloc(sizeof(char)*strlen(target));
+    strcpy(del,target);
+    strcat(del,"\n");
+    file=fopen(filename,"a+");
+    new_file=fopen("temp.txt","a+");
+    rewind(file);
+    while(!feof(file))
+    {//搜索目标行
+        fgets(locate,lenth,file);
+        if(!strcmp(locate,del))
+        {//检测到目标行，跳出
+            status=1;
+            break;
+        }
+        else
+            fputs(locate,new_file);
+    }
+    if(status)
+    {
+        while(!feof(file))
+        {//将目标行之后的数据复制到新文件当中
+            fgets(locate,lenth,file);
+            fputs(locate,new_file);
+        }
+        fclose(file);
+        fclose(new_file);
+        rename(filename,"old");
+        rename("temp.txt",filename);
+        remove("old");
+        free(locate);//释放内存
+        free(del);
+        return 0;
+    }
+    else
+    {//没有找到时返回错误代码-1
+        free(locate);//释放内存
+        free(del);
+        fclose(file);
+        fclose(new_file);
+        remove("temp.txt");
+        return -1;
+    }
 }

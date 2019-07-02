@@ -111,3 +111,45 @@
 1561775060 source:e:\workshop\github\libsystem\public.c
 	"public.h"
 
+1562051702 source:d:\workshop\github\library_system\main.c
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"admin.h"
+	"borrower.h"
+	"public.h"
+
+1561910118 d:\workshop\github\library_system\admin.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<malloc.h>
+	<io.h>
+	"public.h"
+
+1562050758 d:\workshop\github\library_system\public.h
+	<stdlib.h>
+	<stdio.h>
+	<malloc.h>
+	<time.h>
+	<io.h>
+	"admin.h"
+	"borrower.h"
+
+1561910118 d:\workshop\github\library_system\borrower.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<malloc.h>
+	<io.h>
+	"public.h"
+
+1561910118 source:d:\workshop\github\library_system\borrower.c
+	"borrower.h"
+
+1562051600 source:d:\workshop\github\library_system\public.c
+	"public.h"
+
+1562050930 source:d:\workshop\github\library_system\admin.c
+	"admin.h"
+
