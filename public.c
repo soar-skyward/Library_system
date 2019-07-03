@@ -1,6 +1,6 @@
 #include "public.h"
 /*
-公共模块，负责一些基本操作：查询图书、注册账号
+公共模块，负责一些基本操作：查询图书、注册账号、文件操作
 */
 void cleanScr(int times)
 {//清除指定行数的屏幕内容
@@ -72,9 +72,9 @@ int change_line(char *filename,char *origin,char *modified,int lenth)
 int delete_line(char *filename,char *target,int lenth)
 {
     /*
-    改变文件中某一行的数据，输入文件名、想要修改的某一行和修改后的字符串、文件中字符串最大长度
+    删除文件中某一行的数据，输入文件名、想要删除的某一行，文件中字符串最大长度
     在使用前需关闭文件，执行完再重新打开
-    已知缺陷：  当文件中有多行相同的数据时无法作用(只修改第一次出现的)
+    已知缺陷：  当文件中有多行相同的数据时无法作用(只删除第一次出现的)
     */
     FILE *file,*new_file;
     char *locate,*del;
@@ -127,7 +127,7 @@ int delete_line(char *filename,char *target,int lenth)
 int insert_line(char *filename,char *search,char *inserted,int lenth)
 {
     /*
-    向文件中某一行后插入新的一行，输入文件名、目标行、文件中字符串最大长度
+    向文件中某一行后插入新的一行，输入文件名、目标行，文件中字符串最大长度
     在使用前需关闭文件，执行完再重新打开
     */
     FILE *file,*new_file;
