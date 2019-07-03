@@ -123,3 +123,62 @@ int delete_line(char *filename,char *target,int lenth)
         return -1;
     }
 }
+
+int insert_line(char *filename,char *search,char *inserted,int lenth)
+{
+    /*
+    向文件中某一行后插入新的一行，输入文件名、目标行、文件中字符串最大长度
+    在使用前需关闭文件，执行完再重新打开
+    */
+    FILE *file,*new_file;
+    char *locate,*ins,*ser;
+    int status=0,len_i=strlen(inserted),len_s=strlen(search);
+    ins=(char*)malloc(sizeof(char)*len_i);//申请存储插入字符串的空间
+    ser=(char*)malloc(sizeof(char)*len_s);//申请存储插入字符串的空间
+    locate=(char*)malloc(sizeof(char)*lenth);//申请用于搜素的空间
+    strcpy(ins,inserted);
+    strcpy(ser,search);
+    strcat(ins,"\n");
+    strcat(ser,"\n");
+    file=fopen(filename,"a+");
+    new_file=fopen("temp.txt","a+");
+    rewind(file);
+    while(!feof(file))
+    {//在搜索到目标行之前将数据复制到新文件中
+        fgets(locate,lenth,file);
+        fputs(locate,new_file);
+        if(!strcmp(locate,ser))
+        {//检测到目标行，跳出
+            status=1;
+            break;
+        }
+    }
+    if(status)
+    {
+        fputs(ins,new_file);
+        while(!feof(file))
+        {//将目标行之后的数据复制到新文件当中
+            fgets(locate,lenth,file);
+            fputs(locate,new_file);
+        }
+        fclose(file);
+        fclose(new_file);
+        rename(filename,"old");
+        rename("temp.txt",filename);
+        remove("old");
+        free(locate);//释放内存
+        free(ins);
+        free(ser);
+        return 0;
+    }
+    else
+    {//没有找到时返回错误代码-1
+        free(locate);//释放内存
+        free(ins);
+        free(ser);
+        fclose(file);
+        fclose(new_file);
+        remove("temp.txt");
+        return -1;
+    }
+}
