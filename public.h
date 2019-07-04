@@ -37,6 +37,8 @@ struct book_log
 void cleanScr(int times);
 int change_line(char *filename,char *origin,char *modified,int lenth);
 int delete_line(char *filename,char *target,int lenth);
+int insert_line(char *filename,char *Search,char *Insert,int lenth);
+void scan_password(char *str);
 
 #endif // PUBLIC
 

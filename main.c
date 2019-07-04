@@ -10,9 +10,10 @@
 int CreateNew()
 {//创建新用户或管理员
     int new_type,value;
-    printf("选择新建用户类型：\n1.借阅用户\n2.管理员\n");
+    printf("选择新建用户类型：\n1.借阅用户\n2.管理员\n3.退回主菜单");
     scanf("%d",&new_type);
-    while(1)
+    while()
+    switch
     {
     if(new_type==1)
     {
@@ -30,7 +31,7 @@ int CreateNew()
 
 int main()
 {
-    int swi,re;
+    int swi,return_value;
     while(0)//(swi!=4)
     {
         swi=0;//初始化选项并开始选择
@@ -42,10 +43,10 @@ int main()
         switch(swi)//打开相应功能
         {
             case(1):
-                login_Borrower();
+                return_value=login_Borrower();
                 break;
             case(2):
-                login_Admin();
+                return_value=login_Admin();
                 break;
             case(3):
                 CreateNew();

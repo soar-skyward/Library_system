@@ -124,7 +124,7 @@ int delete_line(char *filename,char *target,int lenth)
     }
 }
 
-int insert_line(char *filename,char *search,char *inserted,int lenth)
+int insert_line(char *filename,char *Search,char *Insert,int lenth)
 {
     /*
     向文件中某一行后插入新的一行，输入文件名、目标行，文件中字符串最大长度
@@ -132,12 +132,12 @@ int insert_line(char *filename,char *search,char *inserted,int lenth)
     */
     FILE *file,*new_file;
     char *locate,*ins,*ser;
-    int status=0,len_i=strlen(inserted),len_s=strlen(search);
+    int status=0,len_i=strlen(Insert),len_s=strlen(Search);
     ins=(char*)malloc(sizeof(char)*len_i);//申请存储插入字符串的空间
     ser=(char*)malloc(sizeof(char)*len_s);//申请存储插入字符串的空间
     locate=(char*)malloc(sizeof(char)*lenth);//申请用于搜素的空间
-    strcpy(ins,inserted);
-    strcpy(ser,search);
+    strcpy(ins,Insert);
+    strcpy(ser,Search);
     strcat(ins,"\n");
     strcat(ser,"\n");
     file=fopen(filename,"a+");
@@ -182,3 +182,5 @@ int insert_line(char *filename,char *search,char *inserted,int lenth)
         return -1;
     }
 }
+
+
