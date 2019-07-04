@@ -6,6 +6,8 @@
 #include <malloc.h>
 #include <time.h>
 #include <io.h>
+#include <windows.h>
+#include <conio.h>
 #include "admin.h"
 #include "borrower.h"
 

@@ -1,9 +1,61 @@
 #include "admin.h"
 
-int login_Admin()
+int Login_Admin()
 {//管理员登录，登陆完成后跳至管理员菜单
-    FILE *account_file;
-
+    FILE *file;
+    file=fopen("AdminAccount.txt","r");
+    struct account_Admin acc;
+    char account[16];password[17],pass_check[17],cache[320],swi;
+    int is_exist=0;
+    do
+    {
+        printf("请输入账号：\n");
+        gets(account);
+        printf("请输入密码：\n");
+        gets(password);
+        while(!feof(file))
+        {
+            fgets(cache,320,file);
+            sscanf(cache,"account:%s name:%s password:%s",acc.account,acc.name,acc.password);
+            if(!strcmp(account,acc.account))
+            {
+                is_exist=1;
+                break;
+            }
+        }
+        if(!is_exist)
+        {
+            printf("账号不存在！\n请选择操作：\n1.注册新账号\n2.重新输入\n3.退出");
+            while(1)
+            {
+                swi=getch();
+                if(swi=='1')
+                {
+                    printf("正在转到注册界面...\n");
+                    sleep(1000);
+                    Create_Admin();
+                    break;
+                }
+                else if(swi=='2')
+                    break;
+                else if(swi=='3')
+                    return -1;
+            }
+        }
+        else if(is_exist==1)
+        {
+            if(!strcmp(password,acc.password))
+            {
+                printf("登录成功！正在跳转至管理员界面...\n")
+                Sleep(1000);
+                Admin_menu(acc.name);
+            }
+            else
+            {
+                printf("密码错误！\n")
+            }
+        }
+    }while(is_exist==0);
 }
 
 int Create_Admin()
@@ -55,7 +107,7 @@ int Create_Admin()
     else
     {//将刚注册的账号信息写入账户文件中，并将用户转到登录
         printf("注册成功！正在转到登录界面。。。");
-        fprintf(ac_data,"acc:%d;name:%s;password:%s;\n",new_acc.account,new_acc.name,new_acc.password);
+        fprintf(ac_data,"account:%d name:%s password:%s\n",new_acc.account,new_acc.name,new_acc.password);
         login_Admin();
     }
 }
