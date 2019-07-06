@@ -8,7 +8,21 @@ void cleanScr(int times)
         system("cls");
 }
 
-int change_line(char *filename,char *origin,char *modified,int lenth)
+void cut_line(char *ori,int Start,int End)
+{
+    //将字符串切割，留下从Start到End的内容
+    //如果一直留到最后则End值为-1
+    char *temp;
+    int i,j=0;
+    temp=(char*)malloc(sizeof(char)*strlen(ori));
+    if(End==-1)
+        End=strlen(ori)-1;
+    for(i=Start;i<=End;i++)
+        temp[j]=ori[i];
+    strcpy(ori,temp);
+}
+
+int change_line(char *filename,char *origin,char *modified,int lenth,int mode)
 {
     /*
     改变文件中某一行的数据，输入文件名、想要修改的某一行和修改后的字符串、文件中字符串最大长度
@@ -41,7 +55,18 @@ int change_line(char *filename,char *origin,char *modified,int lenth)
     }
     if(status)
     {
-        fputs(mod,new_file);
+        switch(mode)
+        {
+        case(0)://修改
+            fputs(mod,new_file);
+            break;
+        case(1)://添加
+            fputs(locate,new_file);
+            fputs(mod,new_file);
+            break;
+        case(2)://删除
+            break;
+        }
         while(!feof(file))
         {//将目标行之后的数据复制到新文件当中
             fgets(locate,lenth,file);
@@ -68,14 +93,14 @@ int change_line(char *filename,char *origin,char *modified,int lenth)
         return -1;
     }
 }
-
+/*
 int delete_line(char *filename,char *target,int lenth)
 {
-    /*
+
     删除文件中某一行的数据，输入文件名、想要删除的某一行，文件中字符串最大长度
     在使用前需关闭文件，执行完再重新打开
     已知缺陷：  当文件中有多行相同的数据时无法作用(只删除第一次出现的)
-    */
+
     FILE *file,*new_file;
     char *locate,*del;
     int status=0;
@@ -126,10 +151,10 @@ int delete_line(char *filename,char *target,int lenth)
 
 int insert_line(char *filename,char *Search,char *Insert,int lenth)
 {
-    /*
+
     向文件中某一行后插入新的一行，输入文件名、目标行，文件中字符串最大长度
     在使用前需关闭文件，执行完再重新打开
-    */
+
     FILE *file,*new_file;
     char *locate,*ins,*ser;
     int status=0,len_i=strlen(Insert),len_s=strlen(Search);
@@ -182,5 +207,5 @@ int insert_line(char *filename,char *Search,char *Insert,int lenth)
         return -1;
     }
 }
-
+*/
 

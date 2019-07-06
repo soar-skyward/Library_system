@@ -140,10 +140,63 @@ void Admin_menu(char *name)
     }
 }
 
-void add_book()
-{//向文件中添加单本图书的记录
+int add_book()
+{
+    //向文件中添加单本图书的记录
+    //成功返回0
     FILE *book_file;
+    struct book_log new_book;
+    struct book_log check;
+    char cache[1000],*Null,choice;
+    int book_num,is_exist=0,swi_1=1;
     book_file=fopen("booklist.txt","a+");
+    while(!feof(book_file))
+    {
+        fgets(cache,1000,book_file);
+        if(cache[0]!='\0')
+        {
+            sscanf(cache,"num:%d %s %s %s %s %s",&book_num);
+        }
+        else
+            book_num=1000000000;
+    }
+    book_num++;
+    do
+    {
+        printf("请输入图书标题:");
+        gets(new_book.title);
+        printf("请输入图书出版社:");
+        gets(new_book.press);
+        printf("请输入图书作者:");
+        gets(new_book.author);
+        printf("请输入图书价格:");
+        scanf("%f",&new_book.prize);
+        printf("请输入图书入库数量:");
+        scanf("%d",&new_book.get);
+        rewind(book_file);
+        while(!feof(book_file))
+        {
+            fgets(cache,1000,book_file);
+            sscanf(cache,"num:%d %s %s %s prize:%f get:%d",&check.num,check.title,check.press,check.author,&check.prize,Null);
+            cut_line(check.title,6,-1);
+            cut_line(check.press,6,-1);
+            cut_line(check.author,7,-1);
+            if(!strcmp(new_book.title,check.title))
+            {
+                printf("书库中已经有同名图书，出版社为%，作者为%s，现有%d本\n");
+                printf("是否直接增加该图书数量？(y/n)\n");
+                do{
+                choice=getch();
+                printf("%c",choice);
+                if(choice=='y'||choice=='Y');
+                {
+                    //更改
+                }
+                else if(choice==n
+                }while(1)
+            }
+        }
+    }while(swi_1);
 }
 
 void import_book()

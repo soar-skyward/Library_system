@@ -14,7 +14,7 @@ struct account_Admin
 //函数功能见.c文件相应注释
 int Login_Admin();
 int Create_Admin();
-void add_book();
+int add_book();
 void import_book();
 void change_book();
 void delete_book();
